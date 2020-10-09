@@ -3,23 +3,15 @@ load_dotenv()
 
 from app import app, db
 from app.models import User
+from passlib.hash import sha256_crypt
 
 with app.app_context():
-  # db.drop_all()
+  db.drop_all()
   db.create_all()
 
-  ian = User(username = 'Ian', email = 'ian@aa.io')
-  javier = User(username = 'Javier', email = 'javier@aa.io')
-  dean = User(username = 'Dean', email = 'dean@aa.io')
-  angela = User(username = 'Angela', email = 'angela@aa.io')
-  soonmi = User(username = 'Soon-Mi', email = 'soonmi@aa.io')
-  alissa = User(username = 'Alissa', email = 'alissa@aa.io')
+  bob = User(email = 'guest@guest.com', password=sha256_crypt.hash("password"), firstName = "Bob", lastName = "Smith", zipCode = "53703")
 
-  db.session.add(ian)
-  db.session.add(javier)
-  db.session.add(dean)
-  db.session.add(angela)
-  db.session.add(soonmi)
-  db.session.add(alissa)
+
+  db.session.add(bob)
 
   db.session.commit()
