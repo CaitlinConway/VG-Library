@@ -1,7 +1,6 @@
 
 const LOGIN = "auth/login";
 const LOGOUT = "auth/logout";
-const UPDATEBALANCE = "user/balance/update"
 
 
 export default function authReducer(state = {}, action) {
@@ -47,7 +46,7 @@ export const login = function(email, password) {
         })
         if(res.ok) {
             let currentUser = await res.json();
-            dispatch(setUser(currentUser.id, currentUser.email, currentUser.zipCode, currentUser.lastName, currentUser.firstName));
+            dispatch(setUser(currentUser.id, currentUser.email, currentUser.firstName, currentUser.lastName, currentUser.zipCode));
         }
     }
 }
