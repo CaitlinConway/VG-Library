@@ -35,9 +35,9 @@ function App() {
   return (
     <BrowserRouter>
         <nav>
-            <ul>
-                <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
+            <ul className='nav-bar'>
+                <li className='nav-button-li'><NavLink to="/" activeclass="active" className='nav-button'>Home</NavLink></li>
+                <li className='nav-button-li'><NavLink to="/users" activeclass="active" className='nav-button'>Users</NavLink></li>
             </ul>
         </nav>
         <Switch>

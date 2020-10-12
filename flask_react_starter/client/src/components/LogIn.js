@@ -40,30 +40,27 @@ handleSubmit = (e) => {
       <div className="login-page">
         <div className="login-background"></div>
         <div className="login-page-div">
-          <div className="login-form-header">Welcome to Play With Pals!</div>
+          <div className="login-form-header">Welcome!</div>
           <div className="error-container">
             <ul id="errors" className="errors"></ul>
           </div>
-          <div className="login-form-email-header">Email</div>
           <div className="login-form-div">
             <form onSubmit={this.handleSubmit} className="login-form">
+            <div className="login-form-email-header">Email</div>
               <input
-                className="login-input-email"
+                className="login-input"
                 type="email"
                 value={email}
                 onChange={this.updateEmail}
               ></input>
-              <div className="login-form-password-header">Password</div>
+            <div className="login-form-email-header">Password</div>
               <div>
               <input
-                className="login-input-password"
+                className="login-input"
                 type="password"
                 value={password}
                 onChange={this.updatePassword}
               ></input>
-              </div>
-              <div className="forgot-account">
-                Forgot your email or password?
               </div>
               <div className="login-sign-in-button">
                 <button type="submit" className="login-button">
@@ -72,9 +69,9 @@ handleSubmit = (e) => {
               </div>
             </form>
           </div>
-            <form onSubmit={this.demoUserLogin} className="demo-user-form">
+            <form onSubmit={this.demoUserLogin} className="login-sign-in-button">
               <button type="submit"
-              className="demo-user-login-button">
+              className="login-sign-in-button">
               Demo User
               </button>
             </form>
