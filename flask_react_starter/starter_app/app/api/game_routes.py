@@ -16,3 +16,10 @@ def getGame():
   r = requests.get(f'http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={gameName}&format=json')
   res = r.json()
   return {"gameInfo": res}
+
+@game_routes.route('/console/<consoleId>')
+def getGamesByConsole():
+  games = Game.query.filter(Game.consoleID == consoleId).all()
+  if games:
+    return {consoleId: games}
+  return "No games"
