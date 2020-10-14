@@ -5,7 +5,7 @@ import UserList from './components/UsersList';
 import {setUser} from './store/authReducer'
 import Login from './components/LogIn';
 import SignUp from './components/SignUp';
-
+import Homepage from './components/Homepage'
 const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
   if (loggedIn) return <Route {...rest} component={Component} />;
   else return <Redirect to="/landing" />;
@@ -47,7 +47,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             <Route path="/">
-                <h1>My Home Page</h1>
+                <Homepage></Homepage>
             </Route>
         </Switch>
     </BrowserRouter>
