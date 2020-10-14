@@ -25,12 +25,12 @@
   height: auto;
   position: fixed;
   top: 0;
-  left: 10%;
+  left: 5%;
 }
 .login-page-div{
   position: absolute;
   margin-left: 40%;
-  margin-top: 10%;
+  margin-top: 20%;
   max-width: 30%;
   border: 1px solid blue;
   border-radius: 10px;

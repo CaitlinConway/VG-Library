@@ -22,7 +22,7 @@ def getAllRequests():
     db.session.commit()
     return {"request": newRequest}
 
-@request_routes.route('/<requestId>', method={GET, DELETE})
+@request_routes.route('/<requestId>', methods=['GET', 'DELETE', 'PUT'])
 def requestID():
   if (request.method == 'GET'):
     request = GameRequest.query.filter(GameRequest.id == requestId).one()
@@ -36,3 +36,11 @@ def requestID():
       db.session.delete(request)
       db.session.commit
       return {'requestId': requestId}
+  if (request.method == 'PUT'):
+    request = GameRequest.query.filter(GameRequest.id == requestId).one()
+    if request:
+      status = request.requestStatus
+      if status == 'Pending'
+        request.requestStatus = 'Complete'
+      return {"requestStatus" : 'Complete'}
+  return "No Request"
