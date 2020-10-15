@@ -91,8 +91,11 @@
 #ConsoleFeed{
   list-style-type: none;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin-left: 10%;
+  margin-right: 10%;
+  align-self: center;
 }
 #console-li{
   padding: 10px;
@@ -101,10 +104,11 @@
   border-radius: 5px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 #console-name{
   text-decoration: none;
-  font-size: 30pt;
+  font-size: 25pt;
   font-family: Arial, Helvetica, sans-serif;
   color: lightblue;
   -webkit-text-stroke-width: 1px;
