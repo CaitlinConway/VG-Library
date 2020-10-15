@@ -8,7 +8,7 @@ const Console = ({ console }) => {
   return (
     <>
       <div id={'console-links'}>
-        <NavLink id={'Console-name'} to={`/consoles/${console}`}>{console}</NavLink>
+        <NavLink id={'console-name'} to={`/consoles/${console}`}>{console}</NavLink>
       </div>
     </>
   )

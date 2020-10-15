@@ -8,7 +8,7 @@ const ConsoleFeed = (consoles) => {
         <h1 className='ConsoleFeed-title'>Consoles</h1>
         <ul id="ConsoleFeed">
           {consoles.consoles.map((console) => (
-            <li key={console}>
+            <li key={console} id={'console-li'}>
               <Console console={console}></Console>
             </li>
           ))}
