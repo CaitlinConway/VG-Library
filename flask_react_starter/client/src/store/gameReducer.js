@@ -1,34 +1,30 @@
-const GET_CONSOLES = "games/consoles";
+const GET_CONSOLES = "consoles";
 
-const getAllConsoles = (consoles) => {
+export const getConsoles = (consoles) => {
   return {
     type: GET_CONSOLES,
-    consoles,
+    consoles
   };
 };
 
-export const getConsoles = function () {
+export const getAllConsoles = function () {
   return async (dispatch) => {
-    debugger;
     let res = await fetch("/api/games/consoles");
-    debugger;
     if (res.ok) {
       let consoles = await res.json();
-      dispatch(getAllConsoles(consoles));
+      dispatch(getConsoles(consoles));
     }
   };
 };
 
 export default function gameReducer(state = {}, action) {
-  debugger;
   let newState = Object.assign({}, state);
-  if (action !== undefined) {
     switch (action.type) {
       case GET_CONSOLES:
-        newState[action.consoles] = action.consoles;
+        newState["consoles"] = action.consoles;
         return newState;
       default:
         return state;
     }
-  }
+
 }

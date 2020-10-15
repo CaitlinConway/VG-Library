@@ -1,28 +1,13 @@
 import React from "react";
 
-import { connect } from 'react-redux';
 
-class Console extends React.Component {
-
-
-  render() {
-    let console = this.props.console
+const Console = ({console}) => {
     return (
       <>
-      <div id={'Console-name'}>{console.name}</div>
+      <div id={'Console-name'}>{console}</div>
       </>
     )
 };
-}
 
-const mapStateToProps = (state) => {
 
-  };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Console);
+export default Console;

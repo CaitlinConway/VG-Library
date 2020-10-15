@@ -12,15 +12,15 @@ import { setUser } from "./store/authReducer";
 import Login from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Homepage from "./components/Homepage";
-const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
-  if (loggedIn) return <Route {...rest} component={Component} />;
-  else return <Redirect to="/landing" />;
-};
-const mapStateToProps = (state) => {
-  return { loggedIn: !!state.auth.id };
-};
+// const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
+//   if (loggedIn) return <Route {...rest} component={Component} />;
+//   else return <Redirect to="/landing" />;
+// };
+// const mapStateToProps = (state) => {
+//   return { loggedIn: !!state.auth.id };
+// };
 
-const ConnectedProtectedRoute = connect(mapStateToProps, null)(protectedRoute);
+// const ConnectedProtectedRoute = connect(mapStateToProps, null)(protectedRoute);
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -55,16 +55,17 @@ function App() {
         </ul>
       </nav>
       <Switch>
+      <Route
+          exact
+          path="/"
+          render={(props) => <Homepage {...props}></Homepage>}
+          // component={Homepage}
+        ></Route>
         <Route path="/users">
           <UserList />
         </Route>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
-        <Route
-          exact
-          path="/"
-          render={(props) => <Homepage {...props}></Homepage>}
-        ></Route>
       </Switch>
     </BrowserRouter>
   );

@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { connect } from "react-redux";
+import  {connect, useDispatch}  from "react-redux";
 import ConsoleFeed from "./ConsoleFeed";
-import getConsoles from "../store/gameReducer";
+import {getAllConsoles} from "../store/gameReducer.js";
 
 class Homepage extends React.Component {
-  componentDidMount() {
-    this.props.getConsoles();
-  }
+  // const [consoles, setConsoles] = useState({});
+  // const dispatch = useDispatch();
+  // useEffect(() =>{
+  //   const loadConsoles = async () => {
+  //   const res = await fetch('/api/games/consoles');
+  //   if (res.ok){
+  //     res.data = await res.json();
+  //     debugger;
+  //     dispatch(getConsoles(res.data['consoles']))
+  //   }
+  //   setConsoles(res.data['consoles']);
+  // }
+  // loadConsoles()
+  // }, [])
 
-  render() {
+  // if (consoles) return null;
+  componentDidMount(){
+    this.props.getAllConsoles();
+  }
+  render(){
+    debugger;
+    if (this.props.consoles){
     return (
       <>
         <div id={"homepage-title"}>Play With Pals</div>
-        {/* <ConsoleFeed console = {this.props.consoles}></ConsoleFeed> */}
+        <ConsoleFeed consoles = {this.props.consoles.consoles}></ConsoleFeed>
       </>
     );
+    }
+    return (
+      <>
+      </>
+    )
   }
-}
+  }
+  const mapStateToProps = (state) => ({
+    consoles: state.games.consoles,
+    user: state.auth
+  });
 
-const mapStateToProps = (state) => {
-  return {
-    games: state.games,
-    // consoles: state.games.consoles,
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      getAllConsoles: () => dispatch(getAllConsoles())
+    };
   };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getConsoles: () => dispatch(getConsoles()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default connect (mapStateToProps, mapDispatchToProps)(Homepage);

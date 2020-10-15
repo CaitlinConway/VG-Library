@@ -31,7 +31,13 @@ def getGamesByConsole():
 
 @game_routes.route('/consoles')
 def getAllConsoles():
+    consoleArray = []
     consoles = Console.query.all()
+    print(consoles)
     if consoles:
-        return {"consoles": consoles}
+        for console in consoles:
+            consoleName = Console.query.filter(
+                Console.id == console.id).first()
+            consoleArray.append(consoleName.name)
+        return {"consoles": consoleArray}
     return "No consoles"
