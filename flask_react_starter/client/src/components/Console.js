@@ -1,12 +1,17 @@
 import React from "react";
+import { Redirect, NavLink, Route } from 'react-router-dom';
 
-
-const Console = ({console}) => {
-    return (
-      <>
-      <div id={'Console-name'}>{console}</div>
-      </>
-    )
+const Console = ({ console }) => {
+  // function handleClick() {
+  //   return (<Redirect to={`/consoles/${console}`}></Redirect>)
+  // }
+  return (
+    <>
+      <div id={'console-links'}>
+        <NavLink id={'console-name'} to={`/consoles/${console}`}>{console}</NavLink>
+      </div>
+    </>
+  )
 };
 
 

@@ -17,7 +17,7 @@ with app.app_context():
     Nes = Console(name="NES")
     SNES = Console(name='SNES')
     Atari = Console(name='Atari')
-    Odyssey_2 = Console(name='Odyssey_2')
+    Odyssey_2 = Console(name='Odyssey 2')
     Wii = Console(name='Wii')
     WiiU = Console(name='WiiU')
     PS_1 = Console(name='PlayStation 1')

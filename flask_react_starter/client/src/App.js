@@ -12,6 +12,7 @@ import { setUser } from "./store/authReducer";
 import Login from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Homepage from "./components/Homepage";
+import GameFeed from './components/GameFeed'
 // const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
 //   if (loggedIn) return <Route {...rest} component={Component} />;
 //   else return <Redirect to="/landing" />;
@@ -37,10 +38,10 @@ function App() {
     }
     loadUser();
   }, [dispatch]);
-  if(loading) return null;
+  if (loading) return null;
   return (
     <BrowserRouter>
-      <nav>
+      {/* <nav>
         <ul className="nav-bar">
           <li className="nav-button-li">
             <NavLink to="/" activeclass="active" className="nav-button">
@@ -53,19 +54,21 @@ function App() {
             </NavLink>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <Switch>
-      <Route
+        <Route path="/consoles/:console" render={(props) => <GameFeed {...props}></GameFeed>}></Route>
+        <Route
           exact
           path="/"
           render={(props) => <Homepage {...props}></Homepage>}
-          // component={Homepage}
+
         ></Route>
         <Route path="/users">
           <UserList />
         </Route>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+
       </Switch>
     </BrowserRouter>
   );
