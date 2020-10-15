@@ -41,7 +41,7 @@ function App() {
   if (loading) return null;
   return (
     <BrowserRouter>
-      <nav>
+      {/* <nav>
         <ul className="nav-bar">
           <li className="nav-button-li">
             <NavLink to="/" activeclass="active" className="nav-button">
@@ -54,13 +54,14 @@ function App() {
             </NavLink>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <Switch>
         <Route path="/consoles/:console" render={(props) => <GameFeed {...props}></GameFeed>}></Route>
         <Route
           exact
           path="/"
           render={(props) => <Homepage {...props}></Homepage>}
+
         ></Route>
         <Route path="/users">
           <UserList />
