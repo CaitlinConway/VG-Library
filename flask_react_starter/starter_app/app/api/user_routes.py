@@ -9,9 +9,9 @@ user_routes = Blueprint('users', __name__)
 
 @user_routes.route('/')
 def index():
-  if 'userId' in session:
-    response = User.query.all()
-    return {"users": [user.to_dict() for user in response]}
+    if 'userId' in session:
+        response = User.query.all()
+        return {"users": [user.to_dict() for user in response]}
 
 
 @user_routes.route("/login", methods=["POST"])
@@ -60,10 +60,11 @@ def signup():
         created = User.query.filter(User.email == data["email"]).first()
         return {"id": created.id, "email": created.email, "zipCode": str(created.zipCode)}
 
+
 @user_routes.route('/current', methods=['GET'])
 def load_user():
-  print(session["userId"])
-  if 'userId' in session:
-    return {"userId": session['userId'], 'userEmail': session['userEmail'],  "userFirstName": session['userFirstName'], "userLastName": session['userLastName'], "zipCode": session['zipCode']}, 200
-  else:
-    return {"msg": "user not loaded"}
+    print(session["userId"])
+    if 'userId' in session:
+        return {"userId": session['userId'], 'userEmail': session['userEmail'],  "userFirstName": session['userFirstName'], "userLastName": session['userLastName'], "zipCode": session['userZipCode']}, 200
+    else:
+        return {"msg": "user not loaded"}
