@@ -13,7 +13,7 @@ class GameFeed extends React.Component {
     return (
         <>
         <div id="ConsoleFeed-div">
-        <h1 className='ConsoleFeed-title'>Games</h1>
+        <h1 className='ConsoleFeed-title'>{console}</h1>
         <ul id="ConsoleFeed">
           {this.props.games[console].map((game) => (
             <li key={game} id={'console-game-li'}>
@@ -27,7 +27,7 @@ class GameFeed extends React.Component {
           }
 
     else {
-      return (<div>
+      return (<div id={'no-games'}>
         No games
           </div>)
     }

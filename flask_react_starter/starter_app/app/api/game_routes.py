@@ -19,13 +19,18 @@ def getGame(gameName):
   print(res)
   return {gameName: res}
 
+@game_routes.route('/owners/<gameName>')
+def getGameOwner(gameName):
+  game = Game.query.filter(gameName == Game.name).first()
+  libraries = Library.query.filter(Library.gameId == game.id).all()
+  ownersArray =[]
+  for library in libraries:
+    owners = User.query.filter(User.id == library.userId).all()
+    for owner in owners:
+      name = owner.firstName + " " + owner.lastName
+      ownersArray.append(name)
+  return {"owners": ownersArray}
 
-# @game_routes.route('/consoles/<consoleId>')
-# def getGamesByConsole():
-#     games = Game.query.filter(Game.consoleID == consoleId).all()
-#     if games:
-#         return {consoleId: games}
-#     return "No games"
 
 
 @game_routes.route('/consoles')
