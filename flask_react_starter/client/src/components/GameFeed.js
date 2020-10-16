@@ -12,9 +12,9 @@ class GameFeed extends React.Component {
     if (this.props.games && this.props.games[console] != undefined){
     return (
         <>
-        <div id="GameFeed-div">
-        <h1 className='GameFeed-title'>Games</h1>
-        <ul id="GameFeed">
+        <div id="ConsoleFeed-div">
+        <h1 className='ConsoleFeed-title'>Games</h1>
+        <ul id="ConsoleFeed">
           {this.props.games[console].map((game) => (
             <li key={game} id={'console-game-li'}>
               <Game game={game}></Game>

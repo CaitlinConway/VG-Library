@@ -1,5 +1,6 @@
 const GET_CONSOLES = "consoles";
 const GET_GAMES = 'games'
+// const GET_GAME_INFO = "games/info"
 export const getConsoles = (consoles) => {
   return {
     type: GET_CONSOLES,
@@ -22,6 +23,12 @@ export const getGames = (games) => {
     games
   };
 };
+// export const getGameInfo = (game) =>{
+//   return {
+//     type: GET_GAME_INFO,
+//     games
+//   }
+// }
 
 export const getAllGames = function (console) {
   return async (dispatch) => {
@@ -44,6 +51,8 @@ export default function gameReducer(state = {}, action) {
       case GET_GAMES:
         newState["games"] = action.games;
         return newState;
+      // case GET_GAME_INFO:
+      //   newState[action.game] = action.game.info
       default:
         return state;
     }

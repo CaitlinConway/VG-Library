@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.game_routes import game_routes
-from .api.request_routes import request_routes
+from .api.request_routes import game_request_routes
 
 from .config import Config
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(game_routes, url_prefix="/api/games")
-app.register_blueprint(request_routes, url_prefix='/api/requests')
+app.register_blueprint(game_request_routes, url_prefix='/api/gameRequests')
 db.init_app(app)
 Migrate(app, db)
 
