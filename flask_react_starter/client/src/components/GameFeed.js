@@ -9,8 +9,7 @@ class GameFeed extends React.Component {
   }
   render(){
     let console = this.props.match.params.console;
-    debugger;
-    if (this.props.games){
+    if (this.props.games && this.props.games[console] != undefined){
     return (
         <>
         <div id="GameFeed-div">
@@ -28,8 +27,9 @@ class GameFeed extends React.Component {
           }
 
     else {
-      return (<>
-          </>)
+      return (<div>
+        No games
+          </div>)
     }
     }
   }
