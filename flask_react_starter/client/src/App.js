@@ -56,7 +56,10 @@ function App() {
         </ul>
       </nav> */}
       <Switch>
-        <Route path="/consoles/:console" render={(props) => <GameFeed {...props}></GameFeed>}></Route>
+        <Route path="/consoles/:console"
+        render={(props) => <GameFeed {...props}></GameFeed>}>
+        {/* component={GameFeed}> */}
+        </Route>
         <Route
           exact
           path="/"

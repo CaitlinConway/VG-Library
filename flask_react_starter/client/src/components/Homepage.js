@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { connect, useDispatch } from "react-redux";
 import ConsoleFeed from "./ConsoleFeed";
-import { getAllConsoles } from "../store/gameReducer.js";
+import { getAllConsoles} from "../store/gameReducer.js";
 
 class Homepage extends React.Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class Homepage extends React.Component {
       return (
         <>
           <div id={"homepage-title"}>Play With Pals</div>
-          <ConsoleFeed consoles={this.props.consoles.consoles}></ConsoleFeed>
+          <ConsoleFeed consoles={this.props.consoles.consoles} games = {this.props.consoles.games}></ConsoleFeed>
         </>
       );
     }
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllConsoles: () => dispatch(getAllConsoles())
+    getAllConsoles: () => dispatch(getAllConsoles()),
   };
 };
 
