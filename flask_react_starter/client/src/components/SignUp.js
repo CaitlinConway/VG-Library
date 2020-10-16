@@ -52,7 +52,7 @@ class SignUp extends React.Component {
     };
 
     render() {
-        if (this.props.isLoggedIn) return <Redirect to="/"></Redirect>;
+      if (this.props.isLoggedIn) return <Redirect to="/"></Redirect>;
         const { firstName, lastName, email, password, errors, zipCode } = this.state;
         return (
           <div className="signup-page">
@@ -61,14 +61,14 @@ class SignUp extends React.Component {
                 <div className="signup-form-div">
                     <form onSubmit={this.handleSubmit} className="signup-form">
                         <input
-                        className="signup-input-first-name"
+                        className="signup-input"
                         type="text"
                         value={firstName}
                         onChange={this.updateFirstName}
                         placeholder="First name"
                         ></input>
                         <input
-                        className="signup-input-last-name"
+                        className="signup-input"
                         type="text"
                         value={lastName}
                         onChange={this.updateLastName}
@@ -76,7 +76,7 @@ class SignUp extends React.Component {
                         ></input>
                         <div className="break"></div>
                         <input
-                        className="signup-input-email"
+                        className="signup-input"
                         type="email"
                         value={email}
                         onChange={this.updateEmail}
@@ -84,7 +84,7 @@ class SignUp extends React.Component {
                         ></input>
                         <div className="break"></div>
                         <input
-                        className="signup-input-password"
+                        className="signup-input"
                         type="password"
                         value={password}
                         onChange={this.updatePassword}
@@ -92,7 +92,7 @@ class SignUp extends React.Component {
                         ></input>
                         <div className="break"></div>
                         <button type="submit" className="signup-button">
-                            Continue
+                            Sign up!
                         </button>
                         <span className="signup-text">Already signed up?
                         <a href="/login" className="login-link">Login to your account here.</a></span>

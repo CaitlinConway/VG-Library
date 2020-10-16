@@ -13,15 +13,16 @@ import Login from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Homepage from "./components/Homepage";
 import GameFeed from './components/GameFeed'
-// const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
-//   if (loggedIn) return <Route {...rest} component={Component} />;
-//   else return <Redirect to="/landing" />;
-// };
-// const mapStateToProps = (state) => {
-//   return { loggedIn: !!state.auth.id };
-// };
+import Profile from './components/Profile'
+const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
+  if (loggedIn) return <Route {...rest} component={Component} />;
+  else return <Redirect to="/" />;
+};
+const mapStateToProps = (state) => {
+  return { loggedIn: !!state.auth.id };
+};
 
-// const ConnectedProtectedRoute = connect(mapStateToProps, null)(protectedRoute);
+const ConnectedProtectedRoute = connect(mapStateToProps, null)(protectedRoute);
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -56,6 +57,11 @@ function App() {
         </ul>
       </nav> */}
       <Switch>
+        <Route path="/login"
+        // component={Login}
+        render={(props) => <Login {...props}></Login>}
+        />
+        <Route path="/signup" component={SignUp} />
         <Route path="/consoles/:console"
         render={(props) => <GameFeed {...props}></GameFeed>}>
         {/* component={GameFeed}> */}
@@ -69,9 +75,7 @@ function App() {
         <Route path="/users">
           <UserList />
         </Route>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-
+        <ConnectedProtectedRoute path='/profile' render={(props) => <Profile {...props}></Profile>}></ConnectedProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

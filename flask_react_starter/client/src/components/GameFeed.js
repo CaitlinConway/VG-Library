@@ -9,7 +9,7 @@ class GameFeed extends React.Component {
   }
   render(){
     let console = this.props.match.params.console;
-    if (this.props.games && this.props.games[console] != undefined){
+    if (this.props.games && this.props.games[console] !== undefined){
     return (
         <>
         <div id="ConsoleFeed-div">
