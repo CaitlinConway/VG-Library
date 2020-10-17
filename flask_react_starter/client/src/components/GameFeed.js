@@ -12,6 +12,7 @@ class GameFeed extends React.Component {
     if (this.props.games && this.props.games[console] !== undefined){
     return (
         <>
+        <div id={"homepage-title"}>Play With Pals</div>
         <div id="ConsoleFeed-div">
         <h1 className='ConsoleFeed-title'>{console}</h1>
         <ul id="ConsoleFeed">

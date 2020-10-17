@@ -6,6 +6,8 @@ class Profile extends React.Component {
   render() {
 
       return (<>
+      <div id={"homepage-title"}>Play With Pals</div>
+      <div id={'profile-header'}>My Profile</div>
       </>
       )
 }
