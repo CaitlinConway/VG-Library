@@ -1,19 +1,47 @@
 import React, { useEffect, useState } from "react";
-
 import { connect, useDispatch } from "react-redux";
 import ConsoleFeed from "./ConsoleFeed";
-import { getAllConsoles } from "../store/gameReducer.js";
+import { getAllConsoles} from "../store/gameReducer.js";
+import {Link, NavLink} from 'react-router-dom'
+import {logOut} from '../store/authReducer'
 
 class Homepage extends React.Component {
   componentDidMount() {
     this.props.getAllConsoles();
   }
+  logout = (e) =>{
+    e.preventDefault();
+    this.props.logOut()
+
+  }
   render() {
+    if (this.props.consoles && this.props.user["id"] == undefined) {
+      return (
+        <>
+          <div id={"homepage-title"}>Play With Pals</div>
+          <ConsoleFeed consoles={this.props.consoles.consoles} games = {this.props.consoles.games}></ConsoleFeed>
+          <div id={'welcome'}>
+            Have you been wanting to try out the latest games but don't have money to buy them? Does your video game collection vastly exceed your free time and you wish they weren't just collecting dust? Play with Pals is here to connect friends together to share their libraries. Users can post their own video game libraries, or request to borrow a game from a friend. Want to start swapping?
+          </div>
+          <div id={'welcome-buttons'}>
+          <NavLink id={'join'} to="/signup">Join now!</NavLink>
+          <NavLink id={'sign-in'} to="/login">Already a friend? Sign in here</NavLink>
+          </div>
+        </>
+      );
+    }
     if (this.props.consoles) {
       return (
         <>
           <div id={"homepage-title"}>Play With Pals</div>
-          <ConsoleFeed consoles={this.props.consoles.consoles}></ConsoleFeed>
+          <ConsoleFeed consoles={this.props.consoles.consoles} games = {this.props.consoles.games}></ConsoleFeed>
+          <div id={'welcome'}>
+            Have you been wanting to try out the latest games but don't have money to buy them? Does your video game collection vastly exceed your free time and you wish they weren't just collecting dust? Play with Pals is here to connect friends together to share their libraries. Users can post their own video game libraries, or request to borrow a game from a friend. Want to start swapping?
+          </div>
+          <div id={'welcome-buttons'}>
+          <button id={'logout-button'} onClick={this.logout}>Logout</button>
+          <NavLink to="/profile" user={this.props.user} id={'profile-button'}>Account</NavLink>
+          </div>
         </>
       );
     }
@@ -30,7 +58,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllConsoles: () => dispatch(getAllConsoles())
+    getAllConsoles: () => dispatch(getAllConsoles()),
+    logOut: () => dispatch(logOut())
   };
 };
 

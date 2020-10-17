@@ -1,7 +1,7 @@
 import React from "react";
 import Console from "./Console.js";
 
-const ConsoleFeed = (consoles) => {
+const ConsoleFeed = (consoles, games) => {
   return (
     <>
       <div id="ConsoleFeed-div">
@@ -9,7 +9,7 @@ const ConsoleFeed = (consoles) => {
         <ul id="ConsoleFeed">
           {consoles.consoles.map((console) => (
             <li key={console} id={'console-li'}>
-              <Console console={console}></Console>
+              <Console console={console} games={games}></Console>
             </li>
           ))}
         </ul>

@@ -1,21 +1,23 @@
 /* TODO Add site wide styles */
 .login-sign-in-button{
   color: white;
-  background-color: rgb(14, 100, 199);
+  background-color: rgb(216, 25, 216);
   height: 50px;
   width: 100px;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 10px;
+  font-style: italic;
 }
 .login-button{
   color: white;
-  background-color: rgb(14, 100, 199);
+  background-color: rgb(216, 25, 216);
   height: 50px;
   width: 100px;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 10px;
+  font-style: italic;
 }
-.login-background {
+/* .login-background {
   background-image: url(https://www.pngitem.com/pimgs/m/9-96511_xbox-controller-cartoon-pic-game-controller-cartoon-png.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -26,16 +28,16 @@
   position: fixed;
   top: 0;
   left: 5%;
-}
+} */
 .login-page-div{
   position: absolute;
   margin-left: 40%;
-  margin-top: 20%;
+  margin-top: 15%;
   max-width: 30%;
   border: 1px solid blue;
   border-radius: 10px;
   padding: 20px;
-  background-color: rgba(255, 0, 0, 0.787);
+  background-color: aquamarine;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,15 +51,32 @@
 .login-form-header{
   font-weight: bold;
   font-size: 30px;
-  color: white
+  text-decoration: none;
+  font-size: 25pt;
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightblue;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: blue;
+  font-style: italic;
 }
 .login-form-email-header{
-  font-size: 20px;
-  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #20006b;
+  font-weight: bolder;
+  position: relative;
+  display: flex;
+  font-size: 15pt;
+  margin-bottom: 5%;
+  text-align: center;
+  z-index: 20;
+  padding-top: 10px;
+  font-style: italic;
 }
 .login-input{
   border-radius: 10px;
   border-color: rgb(14, 100, 199);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: blue;
   border: 1px solid;
   padding: 5px;
   margin-bottom: 5px;
@@ -125,7 +144,7 @@
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: blue;
   font-weight: bolder;
-  position: fixed;
+  position: absolute;
   display: flex;
   left: 53%;
   margin-left: -100px;
@@ -150,4 +169,162 @@ body{
   top: 10px;
   left: 10px;
   font-style: italic;
+}
+#console-game-li{
+  padding: 10px;
+  background-color: aquamarine;
+  margin: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#game-blurb{
+  color: #9820cf;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  padding: 5px;
+}
+#game-name{
+  text-decoration: none;
+  font-size: 25pt;
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightblue;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: blue;
+  font-style: italic;
+  justify-self: top;
+}
+#game-feed-divs{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+#game-owner{
+  text-decoration: none;
+  font-size: 10pt;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(6, 134, 177);
+  font-style: italic;
+  justify-self: top;
+}
+#no-games{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #00ff22;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: blue;
+  font-weight: bolder;
+  position: fixed;
+  display: flex;
+  left: 53%;
+  margin-left: -100px;
+  font-style: italic;
+  font-size: 35px;
+  margin-top: 40px;
+}
+#welcome{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #20006b;
+  font-weight: bolder;
+  position: relative;
+  display: flex;
+  font-size: 15pt;
+  margin-bottom: 5%;
+  text-align: center;
+  z-index: 20;
+  padding-top: 10px;
+}
+#join, #sign-in, #logout-button, #profile-button{
+  padding: 30px;
+  background-color: aquamarine;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #00ff22;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: blue;
+  font-style: italic;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+#welcome-buttons{
+  position: relative;
+  margin-bottom: 5%;
+  z-index: 22;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.signup-form-div{
+  position: absolute;
+  margin-left: 30%;
+  margin-top: 15%;
+  max-width: 30%;
+  border: 1px solid blue;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-input{
+  border-radius: 10px;
+  border-color: rgb(14, 100, 199);
+  border: 1px solid;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.signup-form{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+}
+.signup-button{
+  background-color: rgb(204, 127, 255);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ff00f2;
+  font-style: italic;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 5px;
+}
+.signup-text{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #20006b;
+  font-weight: bolder;
+  position: relative;
+  display: flex;
+  font-size: 15pt;
+  margin-bottom: 5%;
+  text-align: center;
+  z-index: 20;
+  padding-top: 10px;
+  flex-direction: row;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#profile-header{
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #00ff22;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: blue;
+  font-weight: bolder;
+  position: absolute;
+  display: flex;
+  left: 53%;
+  margin-left: -100px;
+  font-style: italic;
+  font-size: 35px;
 }

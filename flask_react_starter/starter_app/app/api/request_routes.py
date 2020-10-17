@@ -4,10 +4,10 @@ from app.models import User, db, GameRequest, Game, Library
 from passlib.hash import sha256_crypt
 
 
-request_routes = Blueprint('requests', __name__)
+game_request_routes = Blueprint('gameRequests', __name__)
 
 
-@request_routes.route('/')
+@game_request_routes.route('/')
 def getAllRequests():
     if (request.method == 'GET'):
         requests = GameRequest.query.all()
@@ -25,7 +25,7 @@ def getAllRequests():
         return {"request": newRequest}
 
 
-@request_routes.route('/<requestId>', methods=['GET', 'DELETE', 'PUT'])
+@game_request_routes.route('/<requestId>', methods=['GET', 'DELETE', 'PUT'])
 def requestID():
     if (request.method == 'GET'):
         request = GameRequest.query.filter(GameRequest.id == requestId).one()
