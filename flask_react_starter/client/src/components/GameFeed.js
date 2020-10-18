@@ -19,7 +19,7 @@ class GameFeed extends React.Component {
         <ul id="ConsoleFeed">
           {this.props.games[console].map((game) => (
             <li key={game} id={'console-game-li'}>
-              <Game game={game}></Game>
+              <Game game={game} user={this.props.user}></Game>
             </li>
           ))}
         </ul>

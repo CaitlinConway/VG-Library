@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux"
 import BorrowForm from './BorrowForm'
-const Game = ({ game }) => {
+const Game = ({ game, user }) => {
   const [gameInfo, setGameInfo] = useState({})
   const [gameOwner, setGameOwner] = useState(0)
   useEffect(()=> {
@@ -19,8 +19,15 @@ const Game = ({ game }) => {
           setGameOwner(data.owners)
         }
       }
+      function hideForm(){
+        let button = document.getElementById(`borrow-button-container-${game}`);
+        button.style.display = 'none'
+      }
       getGameInfo()
       getGameOwner();
+      if (user.id == undefined){
+        hideForm();
+      }
   }, [game])
   let string =gameInfo.toString();
   let array = string.split('<span class="searchmatch">');
@@ -37,21 +44,20 @@ const Game = ({ game }) => {
     button.style.display = 'none'
     form.style.display = 'block'
   }
-  const hideForm = (e) => {
-    e.preventDefault();
-    let form = document.getElementById(`borrow-form-${game}`);
-    let button = document.getElementById(`borrow-button-${game}`);
-    button.style.display = 'block'
-    form.style.display = 'none'
-  }
-
+  // function hideForm () {
+  //   let button = document.querySelectorAll(`borrow-button-container`);
+  //   debugger;
+  //   button.style.display = 'none'
+  // }
+  //   if (user.length == 0){
+  //     hideForm();}
   return (
     <>
       <div id={'game-feed-divs'}>
         <div id={'game-name'}>{game}</div>
         <div id={'game-blurb'}>{string4}</div>
         <div id = {'game-owner'}>Owned by: {gameOwner}</div>
-        <div className={'borrow-button-container'}>
+        <div id={`borrow-button-container-${game}`} className={'borrow-button-container'}>
         <button id={`borrow-button-${game}`} className={'borrow-button'} onClick={onClick}>Borrow</button>
         </div>
         <div id={`borrow-form-${game}`} className={'borrow-form'}hidden>
