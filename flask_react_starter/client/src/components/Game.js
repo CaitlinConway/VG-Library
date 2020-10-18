@@ -51,7 +51,7 @@ const Game = ({ game }) => {
         <div id={'game-name'}>{game}</div>
         <div id={'game-blurb'}>{string4}</div>
         <div id = {'game-owner'}>Owned by: {gameOwner}</div>
-        <div id={'borrow-button-container'}>
+        <div className={'borrow-button-container'}>
         <button id={`borrow-button-${game}`} className={'borrow-button'} onClick={onClick}>Borrow</button>
         </div>
         <div id={`borrow-form-${game}`} className={'borrow-form'}hidden>
