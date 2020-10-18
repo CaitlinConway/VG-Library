@@ -7,22 +7,26 @@ class RequestList extends React.Component {
   componentDidMount() {
     this.props.getRequests(this.props.user.id)
   }
+  pendingRequest() {
+    return(
+      <>
+    <div id={'request-title'}>My Pending Requests</div>
+    <div id={'request-list'}>
+      <ul id={'request-list-ul'}>
+        {this.props.requestsFrom.map((requestFrom) => (
+          <li key={requestFrom} id={'Request-li'}>
+            <div>{requestFrom.game}</div>
+            <div>Requested from: {requestFrom.requestFrom}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+    </>)
+  }
   render() {
-    if (this.props.requests) {
-      return (<>
-        <div id={'request-title'}>My Pending Requests</div>
-        <div id={'request-list'}>
-          <ul id={'request-list-ul'}>
-            {this.props.requests.map((request) => (
-              <li key={request} id={'Request-li'}>
-                <div>{request.game}</div>
-                <div>Requested from: {request.from}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div id={'request-title'}>My Borrowed Game Library</div>
+    if (this.props.requestsFrom) {
+      return (this.pendingRequest())
+        {/* <div id={'request-title'}>My Borrowed Game Library</div>
         <div id={'request-list'}>
           <ul id={'request-list-ul'}>
             {this.props.requests.map((request) => (
@@ -46,7 +50,8 @@ class RequestList extends React.Component {
           </ul>
         </div>
       </>)
-    }
+    } */}
+  }
     else {
       return (<> </>)
     }

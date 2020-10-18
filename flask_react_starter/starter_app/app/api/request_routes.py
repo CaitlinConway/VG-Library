@@ -38,12 +38,16 @@ def requestID(userId):
       for grequest in requestsFrom:
         print(grequest)
         game = Game.query.filter(grequest.gameId== Game.id).first()
-        requestsFromObj ={"game": game.name, "requestFrom": grequest.userLibraryId, "status": grequest.requestStatus, "requestId": grequest.id}
+        user = User.query.filter(User.id == grequest.userLibraryId).first()
+        userName = user.firstName +" " + user.lastName
+        requestsFromObj ={"game": game.name, "requestFrom": userName, "status": grequest.requestStatus, "requestId": grequest.id}
         requestsFromArray.append(requestsFromObj)
     if requestsTo:
       for grequest in requestsTo:
         game = Game.query.filter(grequest.gameId== Game.id).first()
-        requestsToObj ={"game": game.name, "requestTo": grequest.userRequestId, "status": grequest.requestStatus, "requestId": grequest.id}
+        user = User.query.filter(User.id == grequest.userRequestId).first()
+        userName = user.firstName +" " + user.lastName
+        requestsToObj ={"game": game.name, "requestTo": userName, "status": grequest.requestStatus, "requestId": grequest.id}
         requestsToArray.append(requestsToObj)
     return {"requestsFrom": requestsFromArray, "requestsTo": requestsToArray}
     return "No Request"
