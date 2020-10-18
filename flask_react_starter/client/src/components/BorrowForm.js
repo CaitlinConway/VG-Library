@@ -20,7 +20,6 @@ class BorrowForm extends React.Component {
     if (requestOf == ""){
       requestOf= this.props.owners[0]
     }
-    debugger;
     if (requestFrom == ""){
       return alert ("Please log in to borrow games")
     }
