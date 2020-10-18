@@ -6,6 +6,7 @@ import {Link, NavLink} from 'react-router-dom'
 class BorrowForm extends React.Component {
 
   render() {
+    let owners = this.props.owners
     return (
       <>
       <div>Test</div>
