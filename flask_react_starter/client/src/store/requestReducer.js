@@ -43,7 +43,6 @@ export const deleteRequestAction = (requestId) =>{
 
 export const newRequest = function(game, requestFrom, requestOf) {
   return async (dispatch) =>{
-    debugger;
     let res = await fetch('/api/gameRequests/', {
       method: "POST",
             headers: {'Content-Type': "application/json"},
