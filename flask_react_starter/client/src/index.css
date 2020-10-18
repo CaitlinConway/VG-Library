@@ -414,6 +414,7 @@ body{
 }
 .library-list-ul{
   list-style-type: none;
+  text-align: center;
 
 }
 .library-li:before{
@@ -430,8 +431,7 @@ body{
   color: #d3067d;
   font-style: italic;
   display: flex;
-  margin-left: -20%;
-
+  margin-left: -15%;
 }
 #library-title{
   font-size: 15pt;
