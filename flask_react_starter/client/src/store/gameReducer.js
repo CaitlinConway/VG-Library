@@ -1,5 +1,6 @@
 const GET_CONSOLES = "consoles";
 const GET_GAMES = 'games'
+const GET_LIBRARY = "library"
 // const GET_GAME_INFO = "games/info"
 export const getConsoles = (consoles) => {
   return {
@@ -23,12 +24,12 @@ export const getGames = (games) => {
     games
   };
 };
-// export const getGameInfo = (game) =>{
-//   return {
-//     type: GET_GAME_INFO,
-//     games
-//   }
-// }
+export const fillLibrary = (library) => {
+  return {
+    type: GET_LIBRARY,
+    library
+  }
+}
 
 export const getAllGames = function (console) {
   return async (dispatch) => {
@@ -40,7 +41,15 @@ export const getAllGames = function (console) {
   };
 };
 
-
+export const getLibrary = function (userId){
+  return async (dispatch) =>{
+  let res = await fetch(`/api/games/library/${userId}`);
+  if (res.ok){
+    let library = await res.json();
+    dispatch(fillLibrary(library))
+  }
+}
+}
 
 export default function gameReducer(state = {}, action) {
   let newState = Object.assign({}, state);
@@ -51,8 +60,9 @@ export default function gameReducer(state = {}, action) {
       case GET_GAMES:
         newState["games"] = action.games;
         return newState;
-      // case GET_GAME_INFO:
-      //   newState[action.game] = action.game.info
+      case GET_LIBRARY:
+        newState["library"] = action.library.library
+        return newState;
       default:
         return state;
     }

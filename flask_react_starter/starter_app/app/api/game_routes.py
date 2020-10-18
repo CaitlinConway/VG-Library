@@ -16,7 +16,6 @@ def getAllGames():
 def getGame(gameName):
   r = requests.get(f'http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={gameName}&format=json')
   res = r.json()
-  print(res)
   return {gameName: res}
 
 @game_routes.route('/owners/<gameName>')
@@ -59,13 +58,24 @@ def getAllConsoles():
 def getGamesByConsole(consoleName):
   console = Console.query.filter(Console.name == consoleName).first()
   consoleId = console.id
-  print(consoleId)
   games = Game.query.filter(Game.consoleId == console.id).all()
   gameArray =[]
   if games:
     for game in games:
       gameName = game.name
       gameArray.append(gameName)
-    print (gameArray)
     return {console.name: gameArray}
   return "No games"
+
+
+@game_routes.route('/library/<userId>')
+def getLibrary(userId):
+  libraries = Library.query.filter(Library.userId == userId).all()
+  library = []
+  if libraries:
+    for libraryGame in libraries:
+      game = Game.query.filter(Game.id == libraryGame.gameId).first()
+      gameName = game.name
+      library.append(gameName)
+    return {"library": library}
+  return {}
