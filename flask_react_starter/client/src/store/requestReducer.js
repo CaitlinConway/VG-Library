@@ -6,7 +6,6 @@ const GET_REQUESTS = "request/get"
 
 export default function requestReducer(state = {}, action) {
   let newState = Object.assign({}, state);
-  debugger;
     switch(action.type) {
         case NEW_REQUEST:
           newState["requestStatus"] = "Success"

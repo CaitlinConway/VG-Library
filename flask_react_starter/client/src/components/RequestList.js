@@ -10,7 +10,31 @@ class RequestList extends React.Component {
   render() {
     if (this.props.requests) {
       return (<>
-        <div id={'request-title'}>My Game Requests</div>
+        <div id={'request-title'}>My Pending Requests</div>
+        <div id={'request-list'}>
+          <ul id={'request-list-ul'}>
+            {this.props.requests.map((request) => (
+              <li key={request} id={'Request-li'}>
+                <div>{request.game}</div>
+                <div>Requested from: {request.from}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div id={'request-title'}>My Borrowed Game Library</div>
+        <div id={'request-list'}>
+          <ul id={'request-list-ul'}>
+            {this.props.requests.map((request) => (
+              <li key={request} id={'Request-li'}>
+                <div>{request.game}</div>
+                <div>Requested from: {request.from}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div id={'request-title'}>My Lent Game Library</div>
         <div id={'request-list'}>
           <ul id={'request-list-ul'}>
             {this.props.requests.map((request) => (
