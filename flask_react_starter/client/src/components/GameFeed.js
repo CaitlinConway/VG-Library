@@ -29,9 +29,13 @@ class GameFeed extends React.Component {
           }
 
     else {
-      return (<div id={'no-games'}>
+      return (
+        <>
+        <NavLink to="/" id={"homepage-title"}>Play With Pals</NavLink>
+        <div id={'no-games'}>
         No games
-          </div>)
+          </div>
+          </>)
     }
     }
   }

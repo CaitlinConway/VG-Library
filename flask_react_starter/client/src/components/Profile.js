@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
+import {NavLink} from 'react-router-dom'
 
 
 class Profile extends React.Component {
   render() {
 
       return (<>
-      <div id={"homepage-title"}>Play With Pals</div>
+      <NavLink to="/" id={"homepage-title"}>Play With Pals</NavLink>
       <div id={'profile-header'}>My Profile</div>
       </>
       )
