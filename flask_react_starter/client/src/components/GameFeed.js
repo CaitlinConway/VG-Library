@@ -2,6 +2,7 @@ import React from 'react'
 import Game from './Game'
 import {connect} from 'react-redux'
 import {getAllGames} from '../store/gameReducer'
+import {NavLink} from 'react-router-dom'
 class GameFeed extends React.Component {
   componentDidMount(){
   let console = this.props.match.params.console;
@@ -12,7 +13,7 @@ class GameFeed extends React.Component {
     if (this.props.games && this.props.games[console] !== undefined){
     return (
         <>
-        <div id={"homepage-title"}>Play With Pals</div>
+        <NavLink to="/" id={"homepage-title"}>Play With Pals</NavLink>
         <div id="ConsoleFeed-div">
         <h1 className='ConsoleFeed-title'>{console}</h1>
         <ul id="ConsoleFeed">
