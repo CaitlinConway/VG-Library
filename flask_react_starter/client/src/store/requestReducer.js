@@ -8,7 +8,7 @@ export default function requestReducer(state = {}, action) {
   let newState = Object.assign({}, state);
     switch(action.type) {
         case NEW_REQUEST:
-          newState[action.request.id] = action.request
+          newState["requestStatus"] = "Success"
             return newState;
         case EDIT_REQUEST:
           newState[action.request.id] = action.request
@@ -21,10 +21,9 @@ export default function requestReducer(state = {}, action) {
     }
 }
 
-export const newRequestAction = (request) =>{
+export const newRequestAction = () =>{
   return {
     type: NEW_REQUEST,
-    request
   }
 }
 
@@ -42,16 +41,17 @@ export const deleteRequestAction = (requestId) =>{
   }
 }
 
-export const newRequest = function(gameId, userRequestId) {
+export const newRequest = function(game, requestFrom, requestOf) {
   return async (dispatch) =>{
-    let res = await fetch('/requests', {
+    debugger;
+    let res = await fetch('/api/gameRequests/', {
       method: "POST",
             headers: {'Content-Type': "application/json"},
-            body: JSON.stringify({gameId, userRequestId})
+            body: JSON.stringify({game, requestFrom, requestOf})
     })
     if (res.ok) {
-      let request = await res.json()
-      dispatch(newRequestAction(request))
+      // let request = await res.json()
+      dispatch(newRequestAction())
     }
   }
 }
