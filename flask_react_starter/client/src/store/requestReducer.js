@@ -70,7 +70,7 @@ export const getRequests = function(userId){
   return async (dispatch) =>{
     let res = await fetch(`/api/gameRequests/${userId}`)
     if (res.ok){
-      let requests = res.json()
+      let requests = await res.json()
       dispatch(getRequestsAction(requests.requestsFrom, requests.requestsTo))
     }
   }
