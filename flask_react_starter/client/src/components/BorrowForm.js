@@ -5,13 +5,27 @@ import {Link, NavLink} from 'react-router-dom'
 
 class BorrowForm extends React.Component {
 
+
   render() {
     let owners = this.props.owners
+    debugger;
+    if (owners !=0){
     return (
       <>
-      <div>Test</div>
+      <div id={'borrow-from'}>Borrow from: </div>
+      <form id={'game-borrow-form'}>
+        <select>
+        {owners.map((owner) => (
+            <option id={'owner-option'} value={owner}>{owner}
+            </option>
+          ))}
+        </select>
+      </form>
       </>
     )
+  }
+
+return (<> </>)
   }
 }
 const mapStateToProps = (state) => ({
