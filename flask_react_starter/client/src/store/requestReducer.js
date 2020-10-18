@@ -6,6 +6,7 @@ const GET_REQUESTS = "request/get"
 
 export default function requestReducer(state = {}, action) {
   let newState = Object.assign({}, state);
+  debugger;
     switch(action.type) {
         case NEW_REQUEST:
           newState["requestStatus"] = "Success"
@@ -70,7 +71,7 @@ export const getRequests = function(userId){
   return async (dispatch) =>{
     let res = await fetch(`/api/gameRequests/${userId}`)
     if (res.ok){
-      let requests = res.json()
+      let requests = await res.json()
       dispatch(getRequestsAction(requests.requestsFrom, requests.requestsTo))
     }
   }
