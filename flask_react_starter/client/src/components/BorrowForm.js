@@ -40,13 +40,15 @@ class BorrowForm extends React.Component {
       <>
       <div id={'borrow-from'}>Request to borrow from:</div>
       <form id={'game-borrow-form'} onSubmit={this.onSubmit}>
-        <select value ={this.state.requestOf} onChange={this.updateRequest}>
+        <select className={'owner-option'} value ={this.state.requestOf} onChange={this.updateRequest}>
         {this.props.owners.map((owner) => (
-            <option  id={'owner-option'} value={owner}>{owner}
+            <option  value={owner}>{owner}
             </option>
           ))}
         </select>
-        <button type='submit'>Borrow</button>
+        <div className={'borrow-button-div'}>
+        <button className={'borrow-button-select'} type='submit'>Borrow</button>
+        </div>
       </form>
       </>
     )
