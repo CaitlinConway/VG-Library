@@ -12,7 +12,7 @@ class LibraryList extends React.Component {
     return (<>
     <div id={'library-title'}>My Game Library</div>
      <div id={'library-list'}>
-       <ul className={'library-list-ul'}>
+       <ul className ={'library-list-ul'}>
        {this.props.library.map((game) => (
             <li key={game} className={'library-li'}>
              {game}
