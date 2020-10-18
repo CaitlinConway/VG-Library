@@ -33,11 +33,15 @@ const Game = ({ game }) => {
   const onClick = (e) =>{
     e.preventDefault();
     let form = document.getElementById(`borrow-form-${game}`);
+    let button = document.getElementById(`borrow-button-${game}`);
+    button.style.display = 'none'
     form.style.display = 'block'
   }
   const hideForm = (e) => {
     e.preventDefault();
     let form = document.getElementById(`borrow-form-${game}`);
+    let button = document.getElementById(`borrow-button-${game}`);
+    button.style.display = 'block'
     form.style.display = 'none'
   }
 
@@ -51,7 +55,7 @@ const Game = ({ game }) => {
         <button id={`borrow-button-${game}`} className={'borrow-button'} onClick={onClick}>Borrow</button>
         </div>
         <div id={`borrow-form-${game}`} className={'borrow-form'}hidden>
-          <BorrowForm owners={gameOwner}></BorrowForm>
+          <BorrowForm owners={gameOwner} game={game}></BorrowForm>
         </div>
       </div>
     </>
