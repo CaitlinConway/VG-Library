@@ -32,8 +32,12 @@ def requestID(userId):
   if (request.method == 'GET'):
     requestsFrom = GameRequest.query.filter(GameRequest.userLibraryId == userId).all()
     requestsTo = GameRequest.query.filter(GameRequest.userRequestId == userId).all()
-    requestsFromArray =[]
-    requestsToArray =[]
+    requestsFromPendingArray =[]
+    requestsFromCompletedArray =[]
+    requestsFromBorrowedArray = []
+    requestsToPendingArray =[]
+    requestsToCompletedArray =[]
+    requestsToBorrowedArray = []
     if requestsFrom:
       for grequest in requestsFrom:
         print(grequest)
@@ -41,15 +45,25 @@ def requestID(userId):
         user = User.query.filter(User.id == grequest.userLibraryId).first()
         userName = user.firstName +" " + user.lastName
         requestsFromObj ={"game": game.name, "requestFrom": userName, "status": grequest.requestStatus, "requestId": grequest.id}
-        requestsFromArray.append(requestsFromObj)
+        if grequest.requestStatus == 'Pending':
+          requestsFromPendingArray.append(requestsFromObj)
+        elif grequest.requestStatus == 'Borrowed':
+          requestsFromBorrowedArray.append(requestsFromObj)
+        elif grequest.requestStatus == 'Completed':
+          requestsFromCompletedArray.append(requestsFromObj)
     if requestsTo:
       for grequest in requestsTo:
         game = Game.query.filter(grequest.gameId== Game.id).first()
         user = User.query.filter(User.id == grequest.userRequestId).first()
         userName = user.firstName +" " + user.lastName
         requestsToObj ={"game": game.name, "requestTo": userName, "status": grequest.requestStatus, "requestId": grequest.id}
-        requestsToArray.append(requestsToObj)
-    return {"requestsFrom": requestsFromArray, "requestsTo": requestsToArray}
+        if grequest.requestStatus == 'Pending':
+          requestsToPendingArray.append(requestsToObj)
+        elif grequest.requestStatus == 'Borrowed':
+          requestsToBorrowedArray.append(requestsToObj)
+        elif grequest.requestStatus == 'Completed':
+          requestsToCompletedArray.append(requestsToObj)
+    return {"requestsFromPending": requestsFromPendingArray, "requestsToPending": requestsToPendingArray, "requestsFromCompleted": requestsFromCompletedArray, "requestsToCompleted": requestsToCompletedArray, "requestsFromBorrowed": requestsFromBorrowedArray, "requestsToBorrowed": requestsToBorrowedArray}
     return "No Request"
     # if (request.method == 'DELETE'):
     #     request = GameRequest.query.filter(GameRequest.id == requestId).one()

@@ -56,7 +56,7 @@ const Game = ({ game, user }) => {
       <div id={'game-feed-divs'}>
         <div id={'game-name'}>{game}</div>
         <div id={'game-blurb'}>{string4}</div>
-        <div id = {'game-owner'}>Owned by: {gameOwner}</div>
+        {/* <div id = {'game-owner'}>Owned by: {gameOwner}</div> */}
         <div id={`borrow-button-container-${game}`} className={'borrow-button-container'}>
         <button id={`borrow-button-${game}`} className={'borrow-button'} onClick={onClick}>Borrow</button>
         </div>

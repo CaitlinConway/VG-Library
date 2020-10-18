@@ -40,6 +40,7 @@ with app.app_context():
     banjoCaitlin = Library(gameId=1, userId=2)
     pikminCaitlin = Library(gameId=2, userId=2)
     marioCaitlin = Library(gameId=3, userId=2)
+    banjoBob = Library(gameId=1, userId=1)
     db.session.add(bob)
     db.session.add(caitlin)
     db.session.add(N64)
@@ -69,4 +70,5 @@ with app.app_context():
     db.session.add(banjoCaitlin)
     db.session.add(pikminCaitlin)
     db.session.add(marioCaitlin)
+    db.session.add(banjoBob)
     db.session.commit()

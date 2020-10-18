@@ -7,7 +7,7 @@ class RequestList extends React.Component {
   componentDidMount() {
     this.props.getRequests(this.props.user.id)
   }
-  pendingRequest() {
+  pendingRequests() {
     return(
       <>
     <div id={'request-title'}>My Pending Requests</div>
@@ -16,7 +16,7 @@ class RequestList extends React.Component {
         {this.props.requestsFrom.map((requestFrom) => (
           <li key={requestFrom} id={'Request-li'}>
             <div>{requestFrom.game}</div>
-            <div>Requested from: {requestFrom.requestFrom}</div>
+            <div>Requested by: {requestFrom.requestFrom}</div>
           </li>
         ))}
       </ul>
@@ -25,7 +25,7 @@ class RequestList extends React.Component {
   }
   render() {
     if (this.props.requestsFrom) {
-      return (this.pendingRequest())
+      return (this.pendingRequests())
         {/* <div id={'request-title'}>My Borrowed Game Library</div>
         <div id={'request-list'}>
           <ul id={'request-list-ul'}>

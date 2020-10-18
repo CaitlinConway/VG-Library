@@ -17,18 +17,21 @@ export default function requestReducer(state = {}, action) {
           delete newState[action.requestId]
             return newState;
         case GET_REQUESTS:
-          newState["requestsFrom"] = action.requestsFrom;
-          newState["requestsTo"] = action.requestsTo;
+          newState["requestsFromPending"] = action.requestsFromPending;
+          newState["requestsToPending"] = action.requestsToPending;
+          newState["requestsFromCompleted"] = action.requestsFromCompleted;
+          newState["requestsToCompleted"] = action.requestsToCompleted;
+          newState["requestsFromBorrowed"] = action.requestsFromBorrowed;
+          newState["requestsToBorrowed"] = action.requestsToBorrowed;
           return newState;
         default:
             return state;
     }
 }
-export const getRequestsAction = (requestsFrom, requestsTo) =>{
+export const getRequestsAction = (requestsFromPending, requestsToPending, requestsFromCompleted, requestsToCompleted, requestsFromBorrowed, requestsToBorrowed) =>{
   return {
     type: GET_REQUESTS,
-    requestsFrom,
-    requestsTo
+    requestsFromPending, requestsToPending, requestsFromCompleted, requestsToCompleted, requestsFromBorrowed, requestsToBorrowed
   }
 }
 
@@ -71,7 +74,7 @@ export const getRequests = function(userId){
     let res = await fetch(`/api/gameRequests/${userId}`)
     if (res.ok){
       let requests = await res.json()
-      dispatch(getRequestsAction(requests.requestsFrom, requests.requestsTo))
+      dispatch(getRequestsAction(requests.requestsFromPending, requests.requestsToPending, requests.requestsFromCompleted, requests.requestsToCompleted, requests.requestsFromBorrowed, requests.requestsToBorrowed))
     }
   }
 }
