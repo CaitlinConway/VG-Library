@@ -58,10 +58,13 @@ export const addGame = function (consoleId, gameName, userId){
       headers: {'Content-Type': "application/json"},
       body: JSON.stringify({consoleId, gameName, userId})
     })
+  let status = await res.json();
   if (res.ok){
     dispatch(getLibrary(userId))
   }
-}
+  else {
+  alert(status.error)
+  }}
 }
 export default function gameReducer(state = {}, action) {
   let newState = Object.assign({}, state);

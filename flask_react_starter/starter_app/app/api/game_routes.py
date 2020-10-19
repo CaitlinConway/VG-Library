@@ -1,8 +1,11 @@
-from flask import Blueprint, jsonify, request, session, redirect, url_for
+from flask import Blueprint, jsonify, request, session, redirect, url_for, abort
 from app.models import User, db, GameRequest, Game, Library, Console
 import requests
 game_routes = Blueprint('games', __name__)
 
+@game_routes.errorhandler(400)
+def resource_not_found(e):
+    return jsonify(error=str(e)), 400
 
 @game_routes.route('/', methods=["POST"])
 def getAllGames():
@@ -13,14 +16,19 @@ def getAllGames():
   #   return "No games"
   if (request.method == "POST"):
     data = request.json
-    game = Game(name=data["gameName"], consoleId=data["consoleId"])
-    db.session.add(game)
+    gameMaybe = Game.query.filter(Game.name==data["gameName"], Game.consoleId==data["consoleId"]).first()
+    if not gameMaybe:
+      game = Game(name=data["gameName"], consoleId=data["consoleId"])
+      db.session.add(game)
     gameId = Game.query.filter(Game.name == data["gameName"]).first()
-    newLibrary = Library(userId=data["userId"], gameId=gameId.id)
-    db.session.add(game)
-    db.session.add(newLibrary)
+    maybeLibrary = Library.query.filter(Library.userId==data["userId"], Library.gameId==gameId.id).first()
+    if not maybeLibrary:
+      newLibrary = Library(userId=data["userId"], gameId=gameId.id)
+      db.session.add(newLibrary)
+    if maybeLibrary:
+      return abort(400, description="You already own this game")
     db.session.commit()
-    return "success"
+    return jsonify({'message': 'Sucess'}), 200
 
 
 @game_routes.route('/<gameName>')
