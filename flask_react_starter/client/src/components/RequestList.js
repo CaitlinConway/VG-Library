@@ -2,65 +2,49 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, NavLink } from 'react-router-dom'
 import { getRequests } from '../store/requestReducer'
+import RequestTo from './RequestTo'
+import RequestFrom from './RequestFrom'
 
 class RequestList extends React.Component {
   componentDidMount() {
     this.props.getRequests(this.props.user.id)
   }
-  pendingRequests() {
-    return(
-      <>
-    <div id={'request-title'}>My Pending Requests</div>
-    <div id={'request-list'}>
-      <ul id={'request-list-ul'}>
-        {this.props.requestsFrom.map((requestFrom) => (
-          <li key={requestFrom} id={'Request-li'}>
-            <div>{requestFrom.game}</div>
-            <div>Requested by: {requestFrom.requestFrom}</div>
-          </li>
-        ))}
-      </ul>
-    </div>
-    </>)
-  }
   render() {
-    if (this.props.requestsFrom) {
-      return (this.pendingRequests())
-        {/* <div id={'request-title'}>My Borrowed Game Library</div>
-        <div id={'request-list'}>
-          <ul id={'request-list-ul'}>
-            {this.props.requests.map((request) => (
-              <li key={request} id={'Request-li'}>
-                <div>{request.game}</div>
-                <div>Requested from: {request.from}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div id={'request-title'}>My Lent Game Library</div>
-        <div id={'request-list'}>
-          <ul id={'request-list-ul'}>
-            {this.props.requests.map((request) => (
-              <li key={request} id={'Request-li'}>
-                <div>{request.game}</div>
-                <div>Requested from: {request.from}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </>)
-    } */}
-  }
-    else {
-      return (<> </>)
-    }
+    return (
+    <>
+      <div id={'pending-request-container'}>
+      <div id={'request-title'}>My Pending Requests</div>
+      <div className={'waiting-on'}>Waiting on</div>
+    {this.props.requestsToPending ? <RequestTo requestsTo={this.props.requestsToPending}></RequestTo> : <></>}
+    <div className={'from-my-library'}>From my library</div>
+    {this.props.requestsFromPending ? <RequestFrom requestsFrom={this.props.requestsFromPending}></RequestFrom> : <></>}
+    </div>
+    <div id={'borrowed-request-container'}>
+    <div id={'request-title'}>My Borrowed Games</div>
+    <div className={'waiting-on'}>I've borrowed</div>
+    {this.props.requestsToBorrowed ? <RequestTo requestsTo={this.props.requestsToBorrowed}></RequestTo> : <></>}
+    <div className={'from-my-library'}>From my library</div>
+    {this.props.requestsFromBorrowed ? <RequestFrom requestsFrom={this.props.requestsFromBorrowed}></RequestFrom> : <></>}
+    </div>
+    <div id={'completed-request-container'}>
+    <div id={'request-title'}>My Completed Requests</div>
+    <div className={'waiting-on'}>I've Played</div>
+    {this.props.requestsToCompleted ? <RequestTo requestsTo={this.props.requestsToCompleted}></RequestTo> : <></>}
+    <div className={'from-my-library'}>From my library</div>
+    {this.props.requestsFromCompleted ? <RequestFrom requestsFrom={this.props.requestsFromCompleted}></RequestFrom> : <></>}
+    </div>
+    </>
+    )
   }
 }
 const mapStateToProps = (state) => ({
   user: state.auth,
-  requestsFrom: state.requests.requestsFrom,
-  requestsTo: state.requests.requestsTo
+  requestsFromPending: state.requests.requestsFromPending,
+  requestsToPending: state.requests.requestsToPending,
+  requestsFromCompleted: state.requests.requestsFromCompleted,
+  requestsToCompleted: state.requests.requestsToCompleted,
+  requestsFromBorrowed: state.requests.requestsFromBorrowed,
+  requestsToBorrowed: state.requests.requestsToBorrowed
 });
 
 const mapDispatchToProps = (dispatch) => {
