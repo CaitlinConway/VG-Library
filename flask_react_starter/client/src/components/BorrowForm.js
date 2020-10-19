@@ -12,6 +12,8 @@ class BorrowForm extends React.Component {
       owners: this.props.owners,
       requestFrom: this.props.user.id,
       requestOf: "",
+      requestStatus: "",
+      updated:""
     }
   }
   onSubmit = async (e)=> {
@@ -25,7 +27,7 @@ class BorrowForm extends React.Component {
     }
     else {
       this.props.newRequest(this.props.game, requestFrom, requestOf);
-      this.setState({requestStatus: "Success"})
+      this.setState({updated: "yes"})
     }
   }
   updateRequest = (e) =>{
@@ -34,7 +36,8 @@ class BorrowForm extends React.Component {
   }
   render() {
     const {requestStatus} = this.state;
-    if (this.props.owners !=0 && requestStatus != 'Success'){
+
+  if (this.props.owners !=0 && requestStatus != 'Success'){
     return (
       <>
       <div id={'borrow-from'}>Request to borrow from:</div>
@@ -51,14 +54,14 @@ class BorrowForm extends React.Component {
       </form>
       </>
     )
-        }
-    else if (this.props.owners !=0){
-      return (
-        <>
-        <div id={'borrow-requested'}>Requested!</div>
-        </>
-      )
-  }
+    }
+  if (this.props.owners !=0 && requestStatus == "Success"){
+     return (
+            <>
+            <div id={'borrow-requested'}>Requested!</div>
+            </>
+          )
+      }
  else{
     return (<> </>)
     }
@@ -66,7 +69,8 @@ class BorrowForm extends React.Component {
 }
 const mapStateToProps = (state) => ({
   consoles: state.games.consoles,
-  user: state.auth
+  user: state.auth,
+  requestStatus : state.requests.requestStatus
 });
 
 const mapDispatchToProps = (dispatch) => {
