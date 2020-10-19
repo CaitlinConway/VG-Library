@@ -412,6 +412,7 @@ body{
   box-shadow: 2px 2px #9820cf;
   overflow-y: scroll;
   width: 25%;
+  max-height: 45%;
 }
 .library-list-ul{
   list-style-type: none;
@@ -506,4 +507,64 @@ body{
   margin-right: -5%;
   align-self:center;
   justify-self: center;
+}
+#add-library-container{
+  position: absolute;
+  margin-left: 15%;
+  margin-top: 60%;
+  padding: 10px;
+  background-color: aquamarine;
+  border-radius: 5px;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px #9820cf;
+  width: 25%;
+}
+#add-library{
+  font-size: 15pt;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #d3067d;
+  font-style: italic;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: blue;
+  padding: 10px;
+}
+.console-option{
+  min-width: 30%;
+  margin: 10px;
+  padding: 5px;
+  font-size: 15pt;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2107b3;
+  font-style: italic;
+}
+.game-option{
+  min-width: 30%;
+  margin: 10px;
+  padding: 5px;
+  font-size: 15pt;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2107b3;
+  font-style: italic;
+}
+.add-button{
+  background-color: rgb(204, 127, 255);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ff00f2;
+  font-style: italic;
+  font-size: 10px;
+  text-decoration: none;
+  padding: 10px;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: blue;
+  min-width: 80%;
+  margin-left: 10%
 }

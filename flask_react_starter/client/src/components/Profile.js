@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import {NavLink} from 'react-router-dom'
+import AddLibrary from "./AddLibrary";
 import LibraryList from './LibraryList'
 import RequestList from './RequestList'
 
@@ -14,6 +15,9 @@ class Profile extends React.Component {
       </div>
       <div id={'request-list-container'}>
         <RequestList user={this.props.user}></RequestList>
+      </div>
+      <div id={'add-library-container'}>
+        <AddLibrary user={this.props.user}></AddLibrary>
       </div>
       </>
       )

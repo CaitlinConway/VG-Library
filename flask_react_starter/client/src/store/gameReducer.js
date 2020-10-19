@@ -1,7 +1,7 @@
 const GET_CONSOLES = "consoles";
 const GET_GAMES = 'games'
 const GET_LIBRARY = "library"
-// const GET_GAME_INFO = "games/info"
+
 export const getConsoles = (consoles) => {
   return {
     type: GET_CONSOLES,
@@ -51,6 +51,18 @@ export const getLibrary = function (userId){
 }
 }
 
+export const addGame = function (consoleId, gameName, userId){
+  return async (dispatch) =>{
+    let res = await fetch ('/api/games/', {
+      method: "POST",
+      headers: {'Content-Type': "application/json"},
+      body: JSON.stringify({consoleId, gameName, userId})
+    })
+  if (res.ok){
+    dispatch(getLibrary(userId))
+  }
+}
+}
 export default function gameReducer(state = {}, action) {
   let newState = Object.assign({}, state);
     switch (action.type) {
