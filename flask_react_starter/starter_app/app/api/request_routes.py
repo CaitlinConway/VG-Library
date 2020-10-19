@@ -1,11 +1,14 @@
 
-from flask import Blueprint, jsonify, request, session, redirect, url_for
+from flask import Blueprint, jsonify, request, session, redirect, url_for, abort
 from app.models import User, db, GameRequest, Game, Library
 from passlib.hash import sha256_crypt
 
 
 game_request_routes = Blueprint('gameRequests', __name__)
 
+@game_request_routes.errorhandler(400)
+def resource_not_found(e):
+    return jsonify(error=str(e)), 400
 
 @game_request_routes.route('/', methods=["GET", "POST"])
 def getAllRequests():
@@ -18,12 +21,12 @@ def getAllRequests():
     data = request.json
     userName = data["requestOf"].split(" ")
     requestOf = User.query.filter(User.firstName == userName[0]).filter(User.lastName== userName[1]).first()
-    print(requestOf)
-    print(requestOf.id)
-    print(data["requestFrom"])
     if requestOf.id ==data["requestFrom"]:
-      return {"You cannot request games from yourself"}
+      return abort(400, description="You cannot request games from yourself")
     game = Game.query.filter(Game.name == data['game']).first()
+    maybeRequest = GameRequest.query.filter(GameRequest.gameId==game.id, GameRequest.userLibraryId==requestOf.id, GameRequest.userRequestId==data['requestFrom'], GameRequest.requestStatus=="Pending").first()
+    if maybeRequest:
+      return abort(400, description="You have already requested this game")
     newRequest = GameRequest(gameId=game.id, userLibraryId=requestOf.id, userRequestId=data['requestFrom'], requestStatus="Pending")
     db.session.add(newRequest)
     db.session.commit()

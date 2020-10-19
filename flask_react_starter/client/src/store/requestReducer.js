@@ -63,13 +63,14 @@ export const newRequest = function(game, requestFrom, requestOf) {
             headers: {'Content-Type': "application/json"},
             body: JSON.stringify({game, requestFrom, requestOf})
     })
-    if (res.ok) {
+    let status = await res.json();
+    if (res.status == 200) {
       // let request = await res.json()
       dispatch(newRequestAction("Success"))
     }
     else {
       // dispatch(newRequestAction("Failure"))
-      alert("Cannot borrow games from self")
+      alert(status.error)
     }
   }
 }
