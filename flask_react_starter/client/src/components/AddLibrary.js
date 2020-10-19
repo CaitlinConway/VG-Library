@@ -61,8 +61,8 @@ class AddLibrary extends React.Component {
               <option value={21}>XBOX</option>
             </select>
             <input className={'game-option'} value={gameName} onChange={this.updateGame}></input>
-            <div className={'borrow-button-div'}>
-            <button className={'borrow-button-select'} type='submit'>Add</button>
+            <div className={'add-library-button-div'}>
+            <button className={'add-button'} type='submit'>Add</button>
             </div>
           </form>
           </>
