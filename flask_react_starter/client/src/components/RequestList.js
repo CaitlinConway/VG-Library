@@ -12,23 +12,23 @@ class RequestList extends React.Component {
   render() {
     return (
     <>
-      <div id={'pending-request-container'}>
-      <div id={'request-title'}>My Pending Requests</div>
-      <div className={'waiting-on'}>Waiting on</div>
-    {this.props.requestsToPending ? <RequestTo requestsTo={this.props.requestsToPending}></RequestTo> : <></>}
-    <div className={'from-my-library'}>From my library</div>
-    {this.props.requestsFromPending ? <RequestFrom requestsFrom={this.props.requestsFromPending}></RequestFrom> : <></>}
+    <div id={'pending-request-container'}>
+      <div className={'request-title'}>My Pending Requests</div>
+        <div className={'waiting-on'}>Waiting on</div>
+          {this.props.requestsToPending ? <RequestTo requestsTo={this.props.requestsToPending}></RequestTo> : <></>}
+        <div className={'from-my-library'}>From my library</div>
+          {this.props.requestsFromPending ? <RequestFrom requestsFrom={this.props.requestsFromPending}></RequestFrom> : <></>}
     </div>
-    <div id={'borrowed-request-container'}>
-    <div id={'request-title'}>My Borrowed Games</div>
-    <div className={'waiting-on'}>I've borrowed</div>
-    {this.props.requestsToBorrowed ? <RequestTo requestsTo={this.props.requestsToBorrowed}></RequestTo> : <></>}
-    <div className={'from-my-library'}>From my library</div>
-    {this.props.requestsFromBorrowed ? <RequestFrom requestsFrom={this.props.requestsFromBorrowed}></RequestFrom> : <></>}
+  <div id={'borrowed-request-container'}>
+      <div className={'request-title'}>My Borrowed Games</div>
+        <div className={'waiting-on'}>I've borrowed</div>
+          {this.props.requestsToBorrowed ? <RequestTo requestsTo={this.props.requestsToBorrowed}></RequestTo> : <></>}
+        <div className={'from-my-library'}>From my library</div>
+          {this.props.requestsFromBorrowed ? <RequestFrom requestsFrom={this.props.requestsFromBorrowed}></RequestFrom> : <></>}
     </div>
     <div id={'completed-request-container'}>
-    <div id={'request-title'}>My Completed Requests</div>
-    <div className={'waiting-on'}>I've Played</div>
+    <div className={'request-title'}>My Completed Requests</div>
+    <div className={'waiting-on'}>I've played</div>
     {this.props.requestsToCompleted ? <RequestTo requestsTo={this.props.requestsToCompleted}></RequestTo> : <></>}
     <div className={'from-my-library'}>From my library</div>
     {this.props.requestsFromCompleted ? <RequestFrom requestsFrom={this.props.requestsFromCompleted}></RequestFrom> : <></>}

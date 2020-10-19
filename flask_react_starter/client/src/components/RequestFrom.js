@@ -5,10 +5,10 @@ const RequestFrom = ({requestsFrom}) =>{
   return(
     <>
 
-    <div id={'request-list'}>
-    <ul id={'request-list-ul'}>
+    <div className={'request-list'}>
+    <ul className={'request-list-ul'}>
     {requestsFrom.map((requestFrom) => (
-      <li key={requestFrom} id={'Request-li'}>
+      <li key={requestFrom} className={'request-li'}>
         <div>{requestFrom.game}</div>
         <div>Requested by: {requestFrom.requestFrom}</div>
       </li>
