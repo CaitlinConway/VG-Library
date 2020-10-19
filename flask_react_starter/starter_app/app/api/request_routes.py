@@ -30,7 +30,7 @@ def getAllRequests():
     newRequest = GameRequest(gameId=game.id, userLibraryId=requestOf.id, userRequestId=data['requestFrom'], requestStatus="Pending")
     db.session.add(newRequest)
     db.session.commit()
-    return jsonify({'message': 'success'}), 200
+    return jsonify({'message': 'Sucess'}), 200
   else:
     return "No Requests"
 
@@ -50,7 +50,7 @@ def requestID(userId):
       for grequest in requestsFrom:
         print(grequest)
         game = Game.query.filter(grequest.gameId== Game.id).first()
-        user = User.query.filter(User.id == grequest.userLibraryId).first()
+        user = User.query.filter(User.id == grequest.userRequestId).first()
         userName = user.firstName +" " + user.lastName
         requestsFromObj ={"game": game.name, "requestFrom": userName, "status": grequest.requestStatus, "requestId": grequest.id}
         if grequest.requestStatus == 'Pending':
@@ -62,7 +62,7 @@ def requestID(userId):
     if requestsTo:
       for grequest in requestsTo:
         game = Game.query.filter(grequest.gameId== Game.id).first()
-        user = User.query.filter(User.id == grequest.userRequestId).first()
+        user = User.query.filter(User.id == grequest.userLibraryId).first()
         userName = user.firstName +" " + user.lastName
         requestsToObj ={"game": game.name, "requestTo": userName, "status": grequest.requestStatus, "requestId": grequest.id}
         if grequest.requestStatus == 'Pending':
