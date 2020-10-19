@@ -37,7 +37,7 @@ class AddLibrary extends React.Component {
           <>
           <div id={'add-library'}>Add to my library</div>
           <form id={'add-library-form'} onSubmit={this.handleSubmit}>
-            <select className={'console-option'} onChange={this.updateConsole}>
+            <select className={'console-option'} onChange={this.updateConsole} value={consoleId}>
               <option value={1}>N64</option>
               <option value={2}>NES</option>
               <option value={3}>SNES</option>
