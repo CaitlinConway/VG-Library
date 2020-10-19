@@ -4,12 +4,23 @@ import requests
 game_routes = Blueprint('games', __name__)
 
 
-@game_routes.route('/')
+@game_routes.route('/', methods=["POST"])
 def getAllGames():
-  games = Game.query.all()
-  if games:
-    return {"games": games}
-  return "No games"
+  # if(request.method == "GET"):
+  #   games = Game.query.all()
+  #   if games:
+  #     return {"games": games}
+  #   return "No games"
+  if (request.method == "POST"):
+    data = request.json
+    game = Game(name=data["gameName"], consoleId=data["consoleId"])
+    db.session.add(game)
+    gameId = Game.query.filter(Game.name == data["gameName"]).first()
+    newLibrary = Library(userId=data["userId"], gameId=gameId.id)
+    db.session.add(game)
+    db.session.add(newLibrary)
+    db.session.commit()
+    return "success"
 
 
 @game_routes.route('/<gameName>')
