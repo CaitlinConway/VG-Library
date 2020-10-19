@@ -65,6 +65,7 @@ export const newRequest = function(game, requestFrom, requestOf) {
     })
     let status = await res.json();
     if (res.ok) {
+      alert("Requested!")
       dispatch(newRequestAction("Success"))
     }
     else {
