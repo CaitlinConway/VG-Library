@@ -18,6 +18,11 @@ def getAllRequests():
     data = request.json
     userName = data["requestOf"].split(" ")
     requestOf = User.query.filter(User.firstName == userName[0]).filter(User.lastName== userName[1]).first()
+    print(requestOf)
+    print(requestOf.id)
+    print(data["requestFrom"])
+    if requestOf.id ==data["requestFrom"]:
+      return {"You cannot request games from yourself"}
     game = Game.query.filter(Game.name == data['game']).first()
     newRequest = GameRequest(gameId=game.id, userLibraryId=requestOf.id, userRequestId=data['requestFrom'], requestStatus="Pending")
     db.session.add(newRequest)

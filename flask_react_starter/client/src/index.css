@@ -397,7 +397,7 @@ body{
   background: #19dcffc7;
 }
 #library-list-container{
-  position: fixed;
+  position: absolute;
   margin-left: 15%;
   margin-top: 10%;
   padding: 10px;
@@ -445,7 +445,7 @@ body{
   -webkit-text-stroke-color: blue;
 }
 #request-list-container{
-  position: fixed;
+  position: absolute;
   margin-left: 50%;
   margin-top: 9%;
   padding: 10px;

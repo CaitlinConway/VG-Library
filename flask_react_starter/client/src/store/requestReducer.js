@@ -8,7 +8,7 @@ export default function requestReducer(state = {}, action) {
   let newState = Object.assign({}, state);
     switch(action.type) {
         case NEW_REQUEST:
-          newState["requestStatus"] = "Success"
+          newState["requestStatus"] = action.status
             return newState;
         case EDIT_REQUEST:
           newState[action.request.id] = action.request
@@ -35,9 +35,10 @@ export const getRequestsAction = (requestsFromPending, requestsToPending, reques
   }
 }
 
-export const newRequestAction = () =>{
+export const newRequestAction = (status) =>{
   return {
     type: NEW_REQUEST,
+    status
   }
 }
 
@@ -64,7 +65,11 @@ export const newRequest = function(game, requestFrom, requestOf) {
     })
     if (res.ok) {
       // let request = await res.json()
-      dispatch(newRequestAction())
+      dispatch(newRequestAction("Success"))
+    }
+    else {
+      // dispatch(newRequestAction("Failure"))
+      alert("Cannot borrow games from self")
     }
   }
 }
