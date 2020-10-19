@@ -30,7 +30,7 @@ def getAllRequests():
     newRequest = GameRequest(gameId=game.id, userLibraryId=requestOf.id, userRequestId=data['requestFrom'], requestStatus="Pending")
     db.session.add(newRequest)
     db.session.commit()
-    return "success"
+    return jsonify({'message': 'success'}), 200
   else:
     return "No Requests"
 

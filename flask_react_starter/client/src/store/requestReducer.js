@@ -64,13 +64,12 @@ export const newRequest = function(game, requestFrom, requestOf) {
             body: JSON.stringify({game, requestFrom, requestOf})
     })
     let status = await res.json();
-    if (res.status == 200) {
-      // let request = await res.json()
+    if (res.ok) {
       dispatch(newRequestAction("Success"))
     }
     else {
-      // dispatch(newRequestAction("Failure"))
       alert(status.error)
+      dispatch(newRequestAction("Failure"))
     }
   }
 }
