@@ -72,7 +72,7 @@ def getAllConsoles():
     return{"consoles": consoleArray}
   return "No consoles"
 
-
+#get games by console
 @game_routes.route('/console/<consoleName>')
 def getGamesByConsole(consoleName):
   console = Console.query.filter(Console.name == consoleName).first()
@@ -86,7 +86,7 @@ def getGamesByConsole(consoleName):
     return {console.name: gameArray}
   return "No games"
 
-
+#get library of one user
 @game_routes.route('/library/<userId>')
 def getLibrary(userId):
   libraries = Library.query.filter(Library.userId == userId).all()
