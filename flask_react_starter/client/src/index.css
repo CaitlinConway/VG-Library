@@ -569,8 +569,20 @@ body{
   margin-left: 10%
 }
 .search-bar-container{
-  position: fixed;
+  position: relative;
   display: flex;
-  left: 53%;
-  margin-left: -100px;
+  /* left: 53%;
+  margin-left: -100px; */
+  flex-direction: column;
+  align-items: center;
+}
+.search-input{
+  background-color: aquamarine;
+  color: darkblue;
+  font-size: 15pt;
+}
+.search-bar-list{
+  color: darkblue;
+  font-size: 15pt;
+  padding-top: 5px;
 }

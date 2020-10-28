@@ -45,17 +45,10 @@ class SearchBar extends React.Component {
       let pageData = [];
       let i = 0;
         name.map(array => {
-      if (!(window.location.href.includes("games")) && i < 6) {
+      if (i < 6) {
         pageData.push(
-        <div className="search-ul">
-         <div className="search-ul-2"><Link to={`/games/${array.name}`}>{array.name}</Link></div>
-        </div>
-        );
-        i++;
-      } else if (window.location.href.includes("console") && i < 6) {
-        pageData.push(
-        <div className="search-ul">
-         <div className="search-ul-2"><Link to={`${array.name}`}>{array.name}</Link></div>
+        <div className="search-div">
+         <div key= {array.id} className="search-li"><Link to={`/games/${array.name}`}>{array.name}</Link></div>
         </div>
         );
         i++;
@@ -71,17 +64,15 @@ class SearchBar extends React.Component {
           <input
             type="text"
             className="search-input"
-            placeholder="Search"
+            placeholder="Search by game name"
             onChange={this.updateSearch}
             onKeyPress={this.onSearch}
             value={search}
             />
         </div>
         <div id="search-list" className="search-bar-list" hidden>
-          <div id="section-1">
-            <div className="search-list-type">Games</div>
+            <div className="search-list-type"></div>
             {pagePath()}
-          </div>
         </div>
       </div>
     );
@@ -98,7 +89,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // search: (search) => dispatch(getSearch(search)),
   };
 };
 
