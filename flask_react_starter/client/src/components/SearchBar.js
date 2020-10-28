@@ -12,32 +12,32 @@ class SearchBar extends React.Component {
   };
 
 
-  // updateSearch = (e) => {
-  //   this.setState({ search: e.target.value });
-  //   const searchList = document.getElementById("search-list");
-  //   if (e.target.value) {
-  //     searchList.removeAttribute("hidden");
-  //     searchList.style.display = "flex";
-  //     name = []
+  updateSearch = (e) => {
+    this.setState({ search: e.target.value });
+    const searchList = document.getElementById("search-list");
+    if (e.target.value) {
+      searchList.removeAttribute("hidden");
+      searchList.style.display = "flex";
+      name = []
+      let gamesArray = this.props.games.games;
+      gamesArray.forEach(game => {
+        for (const key in game) {
+          const checkStr = e.target.value;
+          if ((key === "name") && (game[key].toLowerCase().startsWith(checkStr.toLowerCase())) && !(name.includes(game)) ) {
+            name.push(game);
+          }
+      }
+      });
+    } else {
+      searchList.setAttribute("hidden", "true")
+      searchList.style.display = "none";
+    }
+  };
 
-  //     gamesArray.forEach(game => {
-  //       for (const key in game) {
-  //         const checkStr = e.target.value;
-  //         if ((key === "Name" || key === "Symbol") && (game[key].toLowerCase().startsWith(checkStr.toLowerCase())) && !(name.includes(game)) ) {
-  //           name.push(game);
-  //         }
-  //     }
-  //     });
-  //   } else {
-  //     searchList.setAttribute("hidden", "true")
-  //     searchList.style.display = "none";
-  //   }
-  // };
-
-  // onSearch = (e) => {
-  //   if (e.key === 'Enter') {
-  //   }
-  // }
+  onSearch = (e) => {
+    if (e.key === 'Enter') {
+    }
+  }
 
   render() {
     const { search } = this.state;
@@ -45,27 +45,17 @@ class SearchBar extends React.Component {
       let pageData = [];
       let i = 0;
         name.map(array => {
-      if (!(window.location.href.includes("stocks")) && i < 6) {
+      if (!(window.location.href.includes("games")) && i < 6) {
         pageData.push(
         <div className="search-ul">
-         <div className="search-ul-1"><Link to={`/stocks/${array.Symbol}`}>{array.Symbol}</Link></div>
-         <div className="search-ul-2"><Link to={`/stocks/${array.Symbol}`}>{array.Name}</Link></div>
+         <div className="search-ul-2"><Link to={`/games/${array.name}`}>{array.name}</Link></div>
         </div>
         );
         i++;
-      } else if (window.location.href.includes("user") && i < 6) {
+      } else if (window.location.href.includes("console") && i < 6) {
         pageData.push(
         <div className="search-ul">
-         <div className="search-ul-1"><Link to={`${array.Symbol}`}>{array.Symbol}</Link></div>
-         <div className="search-ul-2"><Link to={`${array.Symbol}`}>{array.Name}</Link></div>
-        </div>
-        );
-        i++;
-      } else if (window.location.href.includes("stocks") && i < 6) {
-        pageData.push(
-        <div className="search-ul">
-         <div className="search-ul-1"><Link to={`${array.Symbol}`}>{array.Symbol}</Link></div>
-         <div className="search-ul-2"><Link to={`${array.Symbol}`}>{array.Name}</Link></div>
+         <div className="search-ul-2"><Link to={`${array.name}`}>{array.name}</Link></div>
         </div>
         );
         i++;

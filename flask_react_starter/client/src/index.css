@@ -568,3 +568,9 @@ body{
   min-width: 80%;
   margin-left: 10%
 }
+.search-bar-container{
+  position: fixed;
+  display: flex;
+  left: 53%;
+  margin-left: -100px;
+}
