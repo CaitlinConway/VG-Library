@@ -7,13 +7,18 @@ game_routes = Blueprint('games', __name__)
 def resource_not_found(e):
     return jsonify(error=str(e)), 400
 
-@game_routes.route('/', methods=["POST"])
+@game_routes.route('/', methods=["POST", "GET"])
 def getAllGames():
-  # if(request.method == "GET"):
-  #   games = Game.query.all()
-  #   if games:
-  #     return {"games": games}
-  #   return "No games"
+  if(request.method == "GET"):
+    games = Game.query.all()
+    gameArray =[]
+    if games:
+      for game in games:
+        gameName = Game.query.filter(Game.id == game.id).first()
+        gameObj = {"name": gameName.name, "id": game.id}
+        gameArray.append(gameObj)
+      return {"games": gameArray}
+    return "No games"
   if (request.method == "POST"):
     data = request.json
     gameMaybe = Game.query.filter(Game.name==data["gameName"], Game.consoleId==data["consoleId"]).first()
