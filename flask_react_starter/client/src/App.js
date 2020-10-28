@@ -14,6 +14,7 @@ import SignUp from "./components/SignUp";
 import Homepage from "./components/Homepage";
 import GameFeed from './components/GameFeed'
 import Profile from './components/Profile'
+import GamePage from './components/GamePage'
 const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
   if (loggedIn) return <Route {...rest} component={Component} />;
   else return <Redirect to="/" />;
@@ -42,35 +43,23 @@ function App() {
   if (loading) return null;
   return (
     <BrowserRouter>
-      {/* <nav>
-        <ul className="nav-bar">
-          <li className="nav-button-li">
-            <NavLink to="/" activeclass="active" className="nav-button">
-              Home
-            </NavLink>
-          </li>
-          <li className="nav-button-li">
-            <NavLink to="/users" activeclass="active" className="nav-button">
-              Users
-            </NavLink>
-          </li>
-        </ul>
-      </nav> */}
       <Switch>
         <Route path="/login"
-        // component={Login}
         render={(props) => <Login {...props}></Login>}
         />
         <Route path="/signup" component={SignUp} />
         <Route path="/consoles/:console"
         render={(props) => <GameFeed {...props}></GameFeed>}>
-        {/* component={GameFeed}> */}
         </Route>
         <Route
           exact
           path="/"
           render={(props) => <Homepage {...props}></Homepage>}
-
+        ></Route>
+        <Route
+          exact
+          path="/games/:game"
+          render={(props) => <GamePage {...props}></GamePage>}
         ></Route>
         <Route path="/users">
           <UserList />

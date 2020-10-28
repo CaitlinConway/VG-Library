@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux"
 import BorrowForm from './BorrowForm'
 import {NavLink} from 'react-router-dom'
-const Game = ({ game, user }) => {
+const Game = (props) => {
   const [gameInfo, setGameInfo] = useState({})
   const [gameOwner, setGameOwner] = useState(0)
+  const userId = useSelector(state => state.auth?.id)
+  const game = props.match.params.game
   useEffect(()=> {
       async function getGameInfo() {
           const res = await fetch(`/api/games/${game}`);
@@ -26,7 +28,7 @@ const Game = ({ game, user }) => {
       }
       getGameInfo()
       getGameOwner();
-      if (user.id == undefined){
+      if (userId == undefined){
         hideForm();
       }
   }, [game])
@@ -54,8 +56,10 @@ const Game = ({ game, user }) => {
   //     hideForm();}
   return (
     <>
+    <NavLink to="/" id={"homepage-title"}>Play With Pals</NavLink>
+    <div id={'one-game'}>
       <div id={'game-feed-divs'}>
-        <NavLink id={'game-name'} to={`/games/${game}`}>{game}</NavLink>
+        <div id={'game-name'}>{game}</div>
         <div id={'game-blurb'}>{string4}</div>
         {/* <div id = {'game-owner'}>Owned by: {gameOwner}</div> */}
         <div id={`borrow-button-container-${game}`} className={'borrow-button-container'}>
@@ -64,6 +68,7 @@ const Game = ({ game, user }) => {
         <div id={`borrow-form-${game}`} className={'borrow-form'}hidden>
           <BorrowForm owners={gameOwner} game={game}></BorrowForm>
         </div>
+      </div>
       </div>
     </>
   )

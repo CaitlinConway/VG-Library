@@ -575,6 +575,8 @@ body{
   margin-left: -100px; */
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
+  margin-bottom: -20px;
 }
 .search-input{
   background-color: aquamarine;
@@ -585,4 +587,8 @@ body{
   color: darkblue;
   font-size: 15pt;
   padding-top: 5px;
+}
+#one-game{
+  position: absolute;
+  margin-left: 20%;
 }
