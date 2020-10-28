@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux"
 import BorrowForm from './BorrowForm'
+import {NavLink} from 'react-router-dom'
 const Game = ({ game, user }) => {
   const [gameInfo, setGameInfo] = useState({})
   const [gameOwner, setGameOwner] = useState(0)
@@ -54,7 +55,7 @@ const Game = ({ game, user }) => {
   return (
     <>
       <div id={'game-feed-divs'}>
-        <div id={'game-name'}>{game}</div>
+        <NavLink id={'game-name'} to={`/games/${game}`}>{game}</NavLink>
         <div id={'game-blurb'}>{string4}</div>
         {/* <div id = {'game-owner'}>Owned by: {gameOwner}</div> */}
         <div id={`borrow-button-container-${game}`} className={'borrow-button-container'}>
