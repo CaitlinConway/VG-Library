@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import ConsoleFeed from "./ConsoleFeed";
-import { getAllConsoles} from "../store/gameReducer.js";
+import { getAllConsoles, getAllGamesNoConsole} from "../store/gameReducer.js";
 import {Link, NavLink} from 'react-router-dom'
 import {logOut} from '../store/authReducer'
+import SearchBar from './SearchBar'
 
 class Homepage extends React.Component {
   componentDidMount() {
     this.props.getAllConsoles();
+    this.props.getAllGamesNoConsole();
   }
   logout = (e) =>{
     e.preventDefault();
@@ -34,6 +36,7 @@ class Homepage extends React.Component {
       return (
         <>
           <div id={"homepage-title"}>Play With Pals</div>
+          <SearchBar games={this.props.games}></SearchBar>
           <ConsoleFeed consoles={this.props.consoles.consoles} games = {this.props.consoles.games}></ConsoleFeed>
           <div id={'welcome'}>
             Have you been wanting to try out the latest games but don't have money to buy them? Does your video game collection vastly exceed your free time and you wish they weren't just collecting dust? Play with Pals is here to connect friends together to share their libraries. Users can post their own video game libraries, or request to borrow a game from a friend. Want to start swapping?
@@ -53,13 +56,15 @@ class Homepage extends React.Component {
 }
 const mapStateToProps = (state) => ({
   consoles: state.games.consoles,
-  user: state.auth
+  user: state.auth,
+  games: state.games.games
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllConsoles: () => dispatch(getAllConsoles()),
-    logOut: () => dispatch(logOut())
+    logOut: () => dispatch(logOut()),
+    getAllGamesNoConsole: () => dispatch(getAllGamesNoConsole())
   };
 };
 

@@ -41,6 +41,16 @@ export const getAllGames = function (console) {
   };
 };
 
+export const getAllGamesNoConsole = function () {
+  return async (dispatch) => {
+    let res = await fetch(`/api/games/`);
+    if (res.ok) {
+      let games = await res.json();
+      dispatch(getGames(games));
+    }
+  };
+};
+
 export const getLibrary = function (userId){
   return async (dispatch) =>{
   let res = await fetch(`/api/games/library/${userId}`);
