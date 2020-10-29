@@ -587,8 +587,14 @@ body{
   color: darkblue;
   font-size: 15pt;
   padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
 }
 #one-game{
   position: absolute;
   margin-left: 20%;
+}
+.search-li{
+  text-decoration: none;
 }
