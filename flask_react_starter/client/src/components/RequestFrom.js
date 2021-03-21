@@ -1,7 +1,9 @@
 import React from 'react'
 
 const RequestFrom = ({requestsFrom}) =>{
-
+  const approve =(e) =>{
+    e.preventDefault();
+  }
   return(
     <>
 
@@ -11,6 +13,7 @@ const RequestFrom = ({requestsFrom}) =>{
       <li key={requestFrom} className={'request-li'}>
         <div>{requestFrom.game}</div>
         <div>Requested by: {requestFrom.requestFrom}</div>
+        <button onClick={approve}>Approve request</button>
       </li>
     ))}
   </ul>

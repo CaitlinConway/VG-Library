@@ -1,7 +1,6 @@
 import React from 'react'
 
 const RequestTo = ({requestsTo}) =>{
-
   return(
     <>
     <div className={'request-list'}>
